@@ -1,0 +1,128 @@
+open-source: free and open code.
+cross-platform: available anywhere on any os.
+document-oriented: based on BSON docs. (coming ahead)
+database server: the background computer which serves for the data and manages the users queries online.
+structured-data: with columns and rows.
+high-performance workloads: like doing hard-core computational work like ML and bitcoin.. .etc.
+Scaling: increasing the capacity of the system.
+    - horizontal - this includes the increase in capabilities of a single computer.
+    - vertical - this include the increase in capacity by multiplying the machines itself.
+non-relational data: data without rows and columns.
+Schema-less: without a table structure.
+BSON - binary json
+
+Advantages of MongoDB:
+ad hoc queries: 
+Indexing: indexes can be given to particular object (coming ahead)
+Replication: maintain a replica of the db for safety;
+Duplication: can duplicate the data for the same reason.
+Load balancing: balancing the load coming on the system using horizontal and vertical scaling.
+Supports map, reduce and aggregation tools - (coming ahead)
+
+Content Management:
+like building a library of books or music or etc.
+
+REAL CODE ALONG:
+
+https://github.com/AMMAR-62/OSC_Project
+
+use mydb
+db
+show dbs
+db.dropDatabase()
+use test
+db.createCollection("Presentation"))
+db.Presentation.insert({"name" : "MEN", "rating":5})
+show collections
+db.createCollection("mycollection", { capped : true, autoIndexID : true, size : 6142800, max : 10000 } )
+db.mycollection.drop()
+show collections
+
+capped      -   Boolean     - (Optional) If true, enables a capped collection. Capped collection is a fixed size    collection that automatically overwrites its oldest entries when it reaches its maximum size. If you specify true, you need to specify size parameter also.
+autoIndexId -   Boolean     - (Optional) If true, automatically create index on _id field.s Default value is false.
+size        -   number      - (Optional) Specifies a maximum size in bytes for a capped collection. If capped is true, then you need to specify this field also.
+max         -   number      - (Optional) Specifies the maximum number of documents allowed in the capped collection.
+
+db.Presentation.insert({
+_id : ObjectId("507f191e810c19729de860ea"),
+title: "MEN Overview",
+description: "MEN is robustly in Web Dev",
+by: "Ammar, Nityansh & Sahil",
+url: "https://github.com/AMMAR-62/OSC_Project",
+topics: ['MongoDB', 'ExpressJS', 'NodeJS'],
+likes: 92
+})
+
+For multiple inserts in one go:
+
+> db.createCollection("Subjects")
+> db.Subjects.insert([
+	{
+		title: "MongoDB Overview",
+		description: "MongoDB is no SQL database",
+		by: "Ammar",
+		url: "https://github.com/AMMAR-62/OSC_Project",
+		topic: "MongoDB",
+		likes: 92
+	},
+	{
+		title: "ExpressJS Overview",
+		description: "ExpressJS is a Node ",
+		by: "Nityansh",
+		url: "https://github.com/AMMAR-62/OSC_Project",
+		topic: "ExpressJS",
+		likes: 102
+	},
+    {
+		title: "NodeJS Overview",
+		description: "MongoDB is no SQL database",
+		by: "Ammar",
+		url: "https://github.com/AMMAR-62/OSC_Project",
+		topic: "MongoDB",
+		likes: 92
+	},
+}
+])
+
+//Other methods to insert
+
+db.details.insertOne(
+	{
+		"total-time-needed":"2 hour" ,
+		"for-mongo": "1 hour",
+		"for-express": "30 mins.",
+		"for-node": "30 mins"
+	})
+
+db.Subjects.find()
+db.Subjects.find().pretty()
+db.Subjects.findOne()
+db.Subjects.find().pretty({$and: [{title: "MongoDB Overview", title: "NodeJS Overview"}]})
+db.Subjects.find().pretty({$or: [{title: "MongoDB Overview", by: "Nityansh"}]})
+
+db.Subjects.update({title: "MongoDB Overview"}, {$set: {by: "Shaikh Mohammed Ammar"}})
+db.Subjects.save({
+        _id: //TODO: Replace the ID,
+		title: "ExpressJS Overview",
+		description: "ExpressJS is a Framework",
+		by: "Nityansh Doshi",
+		url: "https://github.com/AMMAR-62/OSC_Project",
+		topic: "ExpressJS",
+		likes: 50
+    })
+
+db.Subjects.remove({title:"MongoDB Overview"}, 1)
+//To remove all the docs
+db.Subjects.remove({})
+
+db.Subjects.find({},{_id:0, title:0, description:0, by: 1,  url:0, topic:1, likes: 0}).pretty()
+
+db.Subjects.find({},{_id:0, title:0, description:0, by: 1,  url:0, topic:1, likes: 0}).limit(2)
+db.mycol.find({},,{_id:0, title:0, description:0, by: 1,  url:0, topic:1, likes: 0}).limit(1).skip(1)
+
+db.Subject.find().sort({"likes":1})
+
+db.Subjects.createIndex({"likes": 1})
+db.Subjects.dropIndex({"likes": 1})
+
+db.Subjects.aggregate([{$group: {_id:"$by", num_tutorial: {$sum : 1}}}])
