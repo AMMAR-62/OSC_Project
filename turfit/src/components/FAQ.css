@@ -1,0 +1,15 @@
+.article {
+  display: block;
+  margin: 1rem;
+}
+.article-query {
+  display: block;
+  margin: 1rem;
+  font-weight: bold;
+}
+.FAQ-container {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
