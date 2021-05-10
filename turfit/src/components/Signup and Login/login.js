@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import './form.css';
+import Signup from "./signup";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 export default class Login extends Component {
     render() {
         return (
@@ -25,8 +27,11 @@ export default class Login extends Component {
 
                 <button type="submit" className="btn btn-primary btn-block">Submit</button>
                 <p className="forgot-password text-right">
-                    Forgot <a href="#">password?</a>
+                    Don't have an account<Link className="nav-link" to={"/sign-up"}>Signup?</Link>
                 </p>
+                <Switch>
+            <Route path="/sign-up" component={Signup} />
+             </Switch>
             </form>
         );
     }

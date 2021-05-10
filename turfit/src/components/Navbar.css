@@ -1,0 +1,11 @@
+.spacing{
+    margin: 0px 10px 0px 40px;
+    height: auto;
+}
+.spacing:hover{
+    background-color: black;
+}
+.spacing:active{
+    background-color: black;
+    border-bottom: 2px solid white;
+}

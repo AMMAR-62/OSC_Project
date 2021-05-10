@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Individual from "./individual";
 import Corporate from "./corporate";
-import { MDBContainer} from "mdbreact";
+import { MDBContainer} from "mdb-react-ui-kit";
 
 export default function Booking() {
   const [radio, setRadio] = useState(null);

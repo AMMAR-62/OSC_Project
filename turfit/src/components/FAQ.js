@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBTypography } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBTypography } from "mdb-react-ui-kit";
 import "./FAQ.css";
 export default function FAQ() {
   const queries = [
@@ -43,13 +43,12 @@ export default function FAQ() {
   return (
     <MDBContainer>
       <MDBTypography variant="h1">FAQs</MDBTypography>
-      <br/>
       <MDBRow className="FAQ-container">
         {queries.map((article, key) => {
           return (
-            <MDBCol size="6" md="4" className="article">
+            <MDBCol size="6" md="4" className="article border border-light" >
               <span className="article-query">{article.query}</span>
-              {article.answer}
+              <span className="article-answer">{article.answer}</span>
             </MDBCol>
           );
         })}

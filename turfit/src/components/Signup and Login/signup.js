@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import DatePicker from 'react-datepicker';
 import "./form.css";
-import "react-datepicker/dist/react-datepicker.css";
+import Login from "./login";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 export default class SignUp extends Component {
     constructor(props) {
         super(props)
@@ -52,8 +52,11 @@ export default class SignUp extends Component {
 
                 <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
                 <p className="forgot-password text-right">
-                    Already registered <a href="#">sign in?</a>
+                    Already registered<Link className="nav-link" to={"/sign-in"}>Login?</Link>
                 </p>
+                <Switch>
+            <Route path="/sign-in" component={Login} />
+             </Switch>
             </form>
         );
     }

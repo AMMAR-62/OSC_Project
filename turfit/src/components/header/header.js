@@ -5,9 +5,7 @@ import Carousel from "./carousel";
 export default function Header() {
   return (
     <div>
-      <div>
-        <Navbar></Navbar>
-      </div>
+ 
       <div>
         <Carousel></Carousel>
       </div>
